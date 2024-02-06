@@ -86,7 +86,7 @@
 
 - name: Create virtual environments
   ansible.builtin.shell:
-    . {{ pyenvrc_path }}/.pyenvrc && pyenv virtualenv {{ item.py_version }} {{ item.venv_name }}
+    . {{ pyenvrc_path }}/.pyenvrc && pyenv virtualenv {{ pyenv_virtualenv_extra_opts }} {{ item.py_version }} {{ item.venv_name }}
     creates="{{ pyenv_path }}/versions/{{ item.py_version }}/envs/{{ item.venv_name }}/bin/python"
   with_items: "{{ pyenv_virtualenvs }}"
   when: pyenv_enable_virtualenvs
